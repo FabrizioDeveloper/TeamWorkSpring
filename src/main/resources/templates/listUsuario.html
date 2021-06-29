@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>	
+
+		<meta charset="UTF-8"></meta>
+		<title>Usuarios</title>
+
+		<script type="text/javascript"
+				src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
+		</script>
+
+		<link
+			href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+			rel="stylesheet" id="bootstrap-css">
+		</link>
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+
+		<script src="//code.jquery.com/jquery-1.11.1.min.js">
+		</script>
+
+	</head>
+	
+	<body>
+		<div th:replace="fragments/header :: header"></div>
+		<div class="container">
+			<form id="myform">
+				<div class="row clearfix">
+					<div class="col-md-12 column" align="center">
+						<a	style="border-bottom-color: green" th:href="@{/usuario/irRegistrar}"
+							id="add-row" type="button" class="btn btn-primary btn-md left-block">
+							<span class="glyphicon glyphicon-plus"></span> Propietario
+						</a>
+						
+						<table class="table table-bordered table-hover table-striped" id="tab_logic">
+							<thead>
+								<tr>
+									<th class="text-center">CODIGO</th>
+									<th class="text-center">NOMBRES DEL USUARIO</th>
+									<th class="text-center">APELLIDOS DEL USUARIO</th>
+									<th class="text-center">CORREO</th>
+									<th class="text-center">SEXO</th>
+									<th class="text-center">TIPO DE USUARIO</th>
+									<th class="text-center">TELEFONO</th>
+									<th class="text-center">DISTRITO</th>
+									<th class="text-center">PROVINCIA</th>
+									<th class="text-center">DEPARTAMENTO</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="usu: ${listaUsuarios}">
+									<td th:text="${usu.idUsuario}"></td>
+									<td th:text="${usu.nombresUsuario}"></td>
+									<td th:text="${usu.apellidosUsuario}"></td>
+									<td th:text="${usu.correoUsuario}"></td>
+									<td th:text="${usu.sexo}"></td>
+									<td th:text="${usu.tipoUsuario}"></td>
+									<td th:text="${usu.telefono}"></td>
+									<td th:text="${usu.distrito.nombreDistrito}"></td>
+									<td th:text="${usu.distrito.provincia.nombreProvincia}"></td>
+									<td th:text="${usu.distrito.provincia.departamento.nombreDepartamento}"></td>
+									
+									
+								</tr>							
+							</tbody>
+						</table>
+						
+					</div>
+				</div>
+				<div th:if="${mensaje}" class="alert alert-danger">
+					<p th:text="${mensaje}"></p>
+				</div>
+			</form>
+		</div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</body>
+	
+</html>

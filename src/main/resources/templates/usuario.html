@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>	
+
+		<meta charset="UTF-8"></meta>
+		<title>Usuarios</title>
+
+		<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css">
+		</link>
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+
+		<script type="text/javascript" th:src="@{/js/race.js}"></script>
+
+	</head>
+	
+	<body>
+		<div th:replace="fragments/header :: header"></div>
+		<div class="container">
+			<form th:action="@{/usuario/registrar}" method="post" th:object="${usuario}">
+				<div class="form-group">
+					<label for="idUsuario">ID:</label>
+					<input type="text" class="form-control" th:field="*{idUsuario}"></input>
+					
+					<div class="form-group">
+						<label for="nickUsuario">CUENTA DEL USUARIO:</label>
+						<input type="text" class="form-control" th:field="*{cuentaUsuario}" id="nickUsuario"></input>
+						
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('cuentaUsuario')}" 
+								th:errors="*{cuentaUsuario}">
+						</div>						
+					</div>
+					
+					<div class="form-group">
+						<label for="nombreUsuario">NOMBRES DEL USUARIO:</label>
+						<input type="text" class="form-control" th:field="*{nombresUsuario}" id="nombreUsuario"></input>
+						
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('nombresUsuario')}" 
+								th:errors="*{nombresUsuario}">
+						</div>
+						
+					</div>
+					
+					<div class="form-group">
+						<label for="apellidoUsuario">APELLIDOS DEL USUARIO:</label>
+						<input type="text" class="form-control" th:field="*{apellidosUsuario}" id="apellidoUsuario"></input>
+						
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('apellidosUsuario')}" 
+								th:errors="*{apellidosUsuario}">
+						</div>
+						
+					</div>
+					
+					<div class="form-group">
+						<label for="correo">CORREO DEL USUARIO:</label>
+						<input type="text" class="form-control" th:field="*{correoUsuario}" id="correo"></input>
+						
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('correoUsuario')}" 
+								th:errors="*{correoUsuario}">
+						</div>
+						
+					</div>
+					
+					<div class="form-group">
+						<label for="nacimiento">NACIMIENTO:</label>
+						<input type="date" th:field="*{nacimientoUsuario}" class="form-control" id="nacimiento">
+												
+					</div>
+					
+					<div class="form-group">
+						<label for="sexo">SEXO:</label>
+						<select name="sexo">
+  							<option value="Masculino">Masculino</option>
+  							<option value="Femenino" selected>Femenino</option>
+ 						</select>						
+					</div>
+					
+					<div class="form-group">
+						<label for="tipo">TIPO DE USUARIO:</label>
+						<select name="tipo">
+  							<option value="Cliente">Cliente</option>
+  							<option value="Trabajador" selected>Trabajador</option>
+ 						</select>						
+					</div>
+					
+					<div class="form-group">
+						<label for="telefono">TELEFONO:</label>
+						<input type="text" class="form-control" th:field="*{telefono}" id="telefono"></input>
+						
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('telefono')}" 
+								th:errors="*{telefono}">
+						</div>
+						
+					</div>
+					
+					<div class="form-group">
+						<label for="clave">CLAVE:</label>
+						<input type="text" class="form-control" th:field="*{claveUsuario}" id="clave"></input>
+						
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('claveUsuario')}" 
+								th:errors="*{claveUsuario}">
+						</div>
+						
+					</div>
+										
+					<div class="form-group">
+						<label for="ubicacion" class=" col-sm-2 col-form-label">UBICACION:</label>
+							<select class="form-control" th:field="*{departamento.idDepartamento}">
+  								<option th:each="de: ${listaDepartamentos}" 
+										th:value="${de.idDepartamento}"
+										th:text="${de.nombreDepartamento}" 
+										th:selected="(${de.idDepartamento} == *{departamento.idDepartamento})">
+								</option>
+ 							</select>
+ 							
+ 							<select class="form-control" th:field="*{provincia.idProvincia}">
+  								<option th:each="pr: ${listaProvincias}" 
+										th:value="${pr.idProvincia}"
+										th:text="${pr.nombreProvincia}" 
+										th:selected="(${pr.idProvincia} == *{provincia.idProvincia})">
+								</option>
+ 							</select>
+ 							
+ 							<select class="form-control" th:field="*{distrito.idDistrito}">
+  								<option th:each="di: ${listaDistritos}" 
+										th:value="${di.idDistrito}"
+										th:text="${di.nombreDistrito}" 
+										th:selected="(${di.idDistrito} == *{distrito.idDistrito})">
+								</option>
+ 							</select>
+ 											
+					</div>					
+					
+				</div>
+				<button type="submit" class="btn btn-primary">Aceptar</button>
+				<a href="/usuario/listar" class="btn btn-danger">Cancelar</a>
+				
+			</form>
+		</div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</body>
+	
+</html>
