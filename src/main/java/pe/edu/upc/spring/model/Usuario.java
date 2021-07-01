@@ -50,7 +50,15 @@ public class Usuario implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "idDistrito", nullable = false)
-	private Departamento distrito;
+	private Distrito distrito;
+
+	@ManyToOne
+	@JoinColumn(name = "idPronvincia", nullable = false)
+	private Provincia provincia;
+	
+	@ManyToOne
+	@JoinColumn(name = "idDepartamento", nullable = false)
+	private Departamento departamento;
 
 	public int getIdUsuario() {
 		return idUsuario;
@@ -132,12 +140,28 @@ public class Usuario implements Serializable{
 		this.claveUsuario = claveUsuario;
 	}
 
-	public Departamento getDistrito() {
+	public Distrito getDistrito() {
 		return distrito;
 	}
 
-	public void setDistrito(Departamento distrito) {
+	public void setDistrito(Distrito distrito) {
 		this.distrito = distrito;
+	}
+
+	public Provincia getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+	}
+
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
 	}
 	
 }

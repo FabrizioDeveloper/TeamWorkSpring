@@ -111,27 +111,27 @@
 										
 					<div class="form-group">
 						<label for="ubicacion" class=" col-sm-2 col-form-label">UBICACION:</label>
-							<select class="form-control" th:field="*{departamento.idDepartamento}">
+							<select class="form-control" th:field="*{departamento}">
   								<option th:each="de: ${listaDepartamentos}" 
 										th:value="${de.idDepartamento}"
 										th:text="${de.nombreDepartamento}" 
-										th:selected="(${de.idDepartamento} == *{departamento.idDepartamento})">
+										th:selected="(${de.idDepartamento} == *{departamento})">
 								</option>
  							</select>
  							
- 							<select class="form-control" th:field="*{provincia.idProvincia}">
+ 							<select class="form-control" th:field="*{provincia}">
   								<option th:each="pr: ${listaProvincias}" 
 										th:value="${pr.idProvincia}"
 										th:text="${pr.nombreProvincia}" 
-										th:selected="(${pr.idProvincia} == *{provincia.idProvincia})">
+										th:selected="(${pr.idProvincia} == *{provincia})">
 								</option>
  							</select>
  							
- 							<select class="form-control" th:field="*{distrito.idDistrito}">
+ 							<select class="form-control" th:field="*{distrito}">
   								<option th:each="di: ${listaDistritos}" 
 										th:value="${di.idDistrito}"
 										th:text="${di.nombreDistrito}" 
-										th:selected="(${di.idDistrito} == *{distrito.idDistrito})">
+										th:selected="(${di.idDistrito} == *{distrito})">
 								</option>
  							</select>
  											

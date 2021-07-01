@@ -113,4 +113,10 @@ public class ClienteController {
 		return "listCliente";
 	}
 	
+	@RequestMapping("/irBuscar")
+	public String buscar(Model model) { 
+		model.addAttribute("cliente", new Cliente());
+		return "buscar";
+	}
+	
 }

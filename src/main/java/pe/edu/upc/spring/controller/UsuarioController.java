@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import pe.edu.upc.spring.model.Departamento;
+import pe.edu.upc.spring.model.Provincia;
 import pe.edu.upc.spring.model.Distrito;
 import pe.edu.upc.spring.model.Sexo;
 import pe.edu.upc.spring.model.Usuario;
 
+import pe.edu.upc.spring.service.IDepartamentoService;
+import pe.edu.upc.spring.service.IProvinciaService;
 import pe.edu.upc.spring.service.IDistritoService;
 import pe.edu.upc.spring.service.ISexoService;
 import pe.edu.upc.spring.service.IUsuarioService;
@@ -28,6 +31,12 @@ import pe.edu.upc.spring.service.IUsuarioService;
 public class UsuarioController {
 	
 	@Autowired
+	private IDepartamentoService deService;
+	
+	@Autowired
+	private IProvinciaService pService;
+	
+	@Autowired
 	private IDistritoService dService;
 	
 	@Autowired
@@ -35,6 +44,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private IUsuarioService uService;
+	
+	
+	
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -49,10 +61,13 @@ public class UsuarioController {
 	
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistroUsuarios(Model model) {
-		
+		System.out.println("entro a ir registrar");
+		model.addAttribute("listaDepartamentos", deService.listar());
+		model.addAttribute("listaProvincias", pService.listar());
 		model.addAttribute("listaDistritos", dService.listar());
-		model.addAttribute("listaSexos", sService.listar());
-		
+		//model.addAttribute("listaSexos", sService.listar());
+		model.addAttribute("departamento", new Departamento());
+		model.addAttribute("provincia", new Provincia());
 		model.addAttribute("distrito", new Distrito());
 		model.addAttribute("usuario", new Usuario());
 		model.addAttribute("sexo", new Sexo());
@@ -121,6 +136,12 @@ public class UsuarioController {
 	public String listar(Map<String, Object> model) {
 		model.put("listaUsuarios", uService.listar());
 		return "listUsuario";
+	}
+	
+	@RequestMapping("/error")
+	public String error(Map<String, Object> model) {
+		
+		return "error";
 	}
 	
 }

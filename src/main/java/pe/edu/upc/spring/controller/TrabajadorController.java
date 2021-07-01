@@ -113,4 +113,9 @@ public class TrabajadorController {
 		return "listTrabajador";
 	}
 	
+	@RequestMapping("/irBuscar")
+	public String buscar(Model model) { 
+		model.addAttribute("trabajdor", new Trabajador());
+		return "buscar";
+	}
 }
